@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="620" viewBox="0 0 680 620" role="img">
+<title>Arquitectura del microservicio de reseñas</title>
+<desc>Diagrama de capas internas del microservicio de reseñas, su base de datos y su integración con otros microservicios del sistema</desc>
+<style>
+  text { font-family: Arial, Helvetica, sans-serif; }
+  .th { font-size: 14px; font-weight: 700; }
+  .ts { font-size: 12px; }
+</style>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+</defs>
+
+<rect x="0" y="0" width="680" height="620" fill="#ffffff"/>
+
+<!-- Outer container: microservicio -->
+<g>
+<rect x="60" y="50" width="440" height="340" rx="20" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.8"/>
+<text class="th" x="80" y="80" fill="#26215C">Microservicio de reseñas</text>
+<text class="ts" x="80" y="98" fill="#3C3489">Node.js + Express</text>
+</g>
+
+<!-- Capa API -->
+<g>
+<rect x="90" y="120" width="380" height="56" rx="12" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.8"/>
+<text class="th" x="280" y="140" text-anchor="middle" dominant-baseline="central" fill="#042C53">Capa API / controladores</text>
+<text class="ts" x="280" y="160" text-anchor="middle" dominant-baseline="central" fill="#0C447C">Rutas, validación de entrada, códigos HTTP</text>
+</g>
+
+<line x1="280" y1="176" x2="280" y2="196" stroke="#444" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+<!-- Capa logica -->
+<g>
+<rect x="90" y="196" width="380" height="56" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.8"/>
+<text class="th" x="280" y="216" text-anchor="middle" dominant-baseline="central" fill="#04342C">Capa de lógica de negocio</text>
+<text class="ts" x="280" y="236" text-anchor="middle" dominant-baseline="central" fill="#085041">Reglas: calificación 1-5, existencia de reseña</text>
+</g>
+
+<line x1="280" y1="252" x2="280" y2="272" stroke="#444" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+<!-- Capa datos -->
+<g>
+<rect x="90" y="272" width="380" height="56" rx="12" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.8"/>
+<text class="th" x="280" y="292" text-anchor="middle" dominant-baseline="central" fill="#412402">Capa de acceso a datos</text>
+<text class="ts" x="280" y="312" text-anchor="middle" dominant-baseline="central" fill="#633806">Consultas SQL sobre resenaModel</text>
+</g>
+
+<line x1="280" y1="328" x2="280" y2="350" stroke="#444" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+<!-- DB -->
+<g>
+<rect x="160" y="350" width="240" height="36" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.8"/>
+<text class="th" x="280" y="368" text-anchor="middle" dominant-baseline="central" fill="#2C2C2A">Base de datos: SQLite</text>
+</g>
+
+<!-- Endpoints externos -->
+<g>
+<rect x="40" y="420" width="600" height="90" rx="14" fill="#FAECE7" stroke="#993C1D" stroke-width="0.8"/>
+<text class="th" x="60" y="446" fill="#4A1B0C">Endpoints expuestos</text>
+<text class="ts" x="60" y="466" fill="#712B13">POST /resenas · GET /resenas?producto_id=X</text>
+<text class="ts" x="60" y="484" fill="#712B13">DELETE /resenas/{id} · GET /productos/{id}/promedio</text>
+</g>
+
+<line x1="280" y1="390" x2="280" y2="418" stroke="#993C1D" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+<!-- Otros microservicios -->
+<g>
+<rect x="40" y="540" width="270" height="56" rx="12" fill="#FBEAF0" stroke="#993556" stroke-width="0.8"/>
+<text class="th" x="175" y="560" text-anchor="middle" dominant-baseline="central" fill="#4B1528">Microservicio de productos</text>
+<text class="ts" x="175" y="578" text-anchor="middle" dominant-baseline="central" fill="#72243E">Consulta el promedio del producto</text>
+</g>
+
+<g>
+<rect x="370" y="540" width="270" height="56" rx="12" fill="#FBEAF0" stroke="#993556" stroke-width="0.8"/>
+<text class="th" x="505" y="560" text-anchor="middle" dominant-baseline="central" fill="#4B1528">Microservicio de usuarios</text>
+<text class="ts" x="505" y="578" text-anchor="middle" dominant-baseline="central" fill="#72243E">Valida que usuario_id exista</text>
+</g>
+
+<line x1="175" y1="538" x2="175" y2="512" stroke="#72243E" stroke-width="1.2" marker-end="url(#arrow)"/>
+<line x1="505" y1="538" x2="505" y2="512" stroke="#72243E" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+</svg>

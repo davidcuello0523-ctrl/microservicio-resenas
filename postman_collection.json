@@ -1,0 +1,39 @@
+{
+  "info": {
+    "name": "Microservicio Reseñas",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:3000" }
+  ],
+  "item": [
+    {
+      "name": "Health check",
+      "request": { "method": "GET", "url": "{{base_url}}/health" }
+    },
+    {
+      "name": "Crear reseña",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"producto_id\": 101,\n  \"usuario_id\": 5,\n  \"calificacion\": 5,\n  \"comentario\": \"Excelente producto\"\n}"
+        },
+        "url": "{{base_url}}/resenas"
+      }
+    },
+    {
+      "name": "Listar reseñas por producto",
+      "request": { "method": "GET", "url": "{{base_url}}/resenas?producto_id=101" }
+    },
+    {
+      "name": "Promedio de calificación de producto",
+      "request": { "method": "GET", "url": "{{base_url}}/productos/101/promedio" }
+    },
+    {
+      "name": "Eliminar reseña",
+      "request": { "method": "DELETE", "url": "{{base_url}}/resenas/1" }
+    }
+  ]
+}
